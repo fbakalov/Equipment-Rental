@@ -20,3 +20,45 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Theme tokens (site-wide) */
+:root {
+  --primary-600: #0b737b;
+  --primary-700: #095b61;
+  --muted-900: #04323a;
+  --muted-800: #05464a;
+  --surface-100: #f4fbfc;
+}
+
+/* Navbar background to match home hero subtle surface */
+.navbar {
+  background: linear-gradient(90deg,var(--surface-100),#eef9fb) !important;
+}
+
+/* Primary action button consistent with hero */
+.btn-hero, .btn-primary {
+  background: var(--primary-600) !important;
+  color: #fff !important;
+  border-color: var(--primary-600) !important;
+  font-weight: 600;
+  border-radius: 30px;
+}
+.btn-hero:hover, .btn-primary:hover {
+  background: var(--primary-700) !important;
+  border-color: var(--primary-700) !important;
+}
+
+/* Outline primary adjustments */
+.btn-outline-primary {
+  color: var(--primary-600) !important;
+  border-color: var(--primary-600) !important;
+}
+.btn-outline-primary:hover {
+  background: var(--primary-600) !important;
+  color: #fff !important;
+}
+
+.badge-primary {
+  background: var(--primary-600) !important;
+  color: #fff !important;
+}

@@ -1,0 +1,35 @@
+@model EquipmentRental.ViewModels.AdminDashboardViewModel
+
+<h2>Admin dashboard</h2>
+<div class="row">
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h3>@Model.UserCount</h3>
+            <div>Users</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h3>@Model.EquipmentCount</h3>
+            <div>Equipment items</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h3>@Model.RequestCount</h3>
+            <div>Requests</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card p-3">
+            <h3>@Model.AwaitingCount</h3>
+            <div>Awaiting requests</div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a asp-action="Users" class="btn btn-outline-primary me-2">Manage Users</a>
+    <a asp-controller="Equipment" asp-action="Index" class="btn btn-outline-primary">Manage Equipment</a>
+    <a asp-controller="RentalRequests" asp-action="All" class="btn btn-outline-primary ms-2">Manage Requests</a>
+</div>

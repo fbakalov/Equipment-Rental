@@ -1,0 +1,55 @@
+@model EquipmentRental.ViewModels.RentalRequestCreateViewModel
+
+<h2>Create Rental Request</h2>
+
+<form asp-action="Create" method="post" class="form">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+            @foreach (var state in ViewData.ModelState.Values)
+            {
+                foreach (var err in state.Errors)
+                {
+                    <li>@err.ErrorMessage</li>
+                }
+            }
+            </ul>
+        </div>
+    }
+
+    <div class="mb-3">
+        <label class="form-label">Start Date</label>
+        <input asp-for="Request.StartDate" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="Request.StartDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <input asp-for="Request.EndDate" class="form-control" type="date" min="@Model.Request.StartDate.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="Request.EndDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Comment</label>
+        <textarea asp-for="Request.Comment" class="form-control"></textarea>
+        <span asp-validation-for="Request.Comment" class="text-danger"></span>
+    </div>
+
+    <h3>Items</h3>
+    <div class="row">
+    @foreach(var item in Model.Items)
+    {
+        <div class="col-md-4 mb-2">
+            <div class="card p-2">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <p class="card-text">@item.Description</p>
+                    <p class="card-text"><small>Available: @item.AvailableQuantity</small></p>
+                    <input class="form-control" type="number" name="quantities[@item.Id]" min="0" max="@item.AvailableQuantity" />
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

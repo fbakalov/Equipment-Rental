@@ -1,0 +1,39 @@
+@model IEnumerable<EquipmentRental.Models.RentalRequest>
+
+<h2>My Requests</h2>
+<div class="row">
+    @foreach(var r in Model)
+    {
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5>Request #@r.Id</h5>
+                            <div><strong>@r.StartDate.ToShortDateString()</strong> - <strong>@r.EndDate.ToShortDateString()</strong></div>
+                        </div>
+                        <div>
+                            <span class="badge @(r.Status=="awaiting"?"bg-warning text-dark": (r.Status=="approved"?"bg-success":"bg-danger"))">@r.Status</span>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <ul>
+                        @foreach(var ri in r.RentalRequestItems)
+                        {
+                            <li>@ri.EquipmentItem.Name x @ri.Quantity</li>
+                        }
+                    </ul>
+
+                    <div class="mt-2">
+                        @if(r.Status == "awaiting"){
+                            <form asp-action="Delete" method="post" asp-route-id="@r.Id" onsubmit="return confirm('Delete this request?');">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

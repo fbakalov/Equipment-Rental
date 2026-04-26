@@ -1,8 +1,55 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Equipment Rental";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    .hero {
+        background: linear-gradient(135deg, #e8f6f9 0%, #f4fbfc 100%);
+        color: #04323a;
+        padding: 60px 0;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(4,50,58,0.06);
+    }
+
+    .hero h1 { font-weight:700; color:#02333a }
+    .hero p { font-size:1.05rem; color:#05464a }
+    .btn-hero { background: #0b737b; color: white; font-weight:600; border-radius: 30px; padding: 10px 24px; }
+    .btn-hero:hover { background:#095b61 }
+
+    /* general color tokens to be used site-wide */
+    :root {
+        --primary-600: #0b737b;
+        --primary-700: #095b61;
+        --muted-900: #04323a;
+        --muted-800: #05464a;
+        --surface-100: #f4fbfc;
+    }
+</style>
+
+<div class="hero">
+    <div class="container text-center">
+        <h1 class="display-4">Equipment Rental</h1>
+        <p class="lead">Browse available equipment and submit rental requests quickly. Simple, modern and reliable equipment management for your organization.</p>
+        <div class="mt-4">
+            <a asp-controller="Equipment" asp-action="Index" class="btn btn-hero btn-lg">Browse Equipment</a>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card shadow-sm p-3" style="background:var(--surface-100);">
+                <h5 style="color:var(--muted-900)">Easy Requests</h5>
+                <p class="text-muted" style="color:var(--muted-800)">Create requests for one or more items and track their status.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card shadow-sm p-3" style="background:var(--surface-100);">
+                <h5 style="color:var(--muted-900)">Reliable Inventory</h5>
+                <p class="text-muted" style="color:var(--muted-800)">Inventory is adjusted when requests are approved or rejected.</p>
+            </div>
+        </div>
+    </div>
 </div>

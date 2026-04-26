@@ -1,0 +1,44 @@
+@model IEnumerable<EquipmentRental.Models.RentalRequest>
+
+<h2>All Requests</h2>
+<div class="row">
+    @foreach(var r in Model)
+    {
+        <div class="col-md-6 mb-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h5>Request #@r.Id</h5>
+                            <div>@r.User.UserName</div>
+                            <div><strong>@r.StartDate.ToShortDateString()</strong> - <strong>@r.EndDate.ToShortDateString()</strong></div>
+                        </div>
+                        <div>
+                            <span class="badge @(r.Status=="awaiting"?"bg-warning text-dark": (r.Status=="approved"?"bg-success":"bg-danger"))">@r.Status</span>
+                        </div>
+                    </div>
+
+                    <hr />
+                    <ul>
+                        @foreach(var ri in r.RentalRequestItems)
+                        {
+                            <li>@ri.EquipmentItem.Name x @ri.Quantity</li>
+                        }
+                    </ul>
+
+                    <div class="mt-2">
+                        <form asp-action="ChangeStatus" method="post" class="d-flex gap-2">
+                            <input type="hidden" name="id" value="@r.Id" />
+                            <select name="status" class="form-select w-auto">
+                                <option value="awaiting">awaiting</option>
+                                <option value="approved">approved</option>
+                                <option value="rejected">rejected</option>
+                            </select>
+                            <button type="submit" class="btn btn-primary btn-sm">Change</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
